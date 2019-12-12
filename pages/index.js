@@ -2,9 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from 'antd';
 import { css } from '@emotion/core';
-import {
-    Content, Footer, Header, Container,
-} from '../components/Layout';
 
 const mainCls = css`
   max-width: 1000px;
@@ -86,33 +83,33 @@ const bannerConfig = {
     price: 305,
 };
 
-const HomePage = () => (
-    <Container>
-        <Header />
-        <Content>
-            <div css={mainCls} justifyContent="space-between">
-                <div className="content">
-                    <div className="title">{bannerConfig.original_title}</div>
-                    <div className="subtitle">
-                        {`2016 | ${bannerConfig.genres_data.toString().replace(/,/g, ', ')}`}
-                    </div>
-                    <div className="overview">{bannerConfig.overview}</div>
-                    <div className="price">{`$${bannerConfig.price}`}</div>
-                    <div className="action">
-                        <Button>Purchase</Button>
-                        <Button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">Watch Trailer</Button>
-                    </div>
-                </div>
-                <Link href={`/product/${bannerConfig.id}`}>
-                    <img
-                        src={`https://image.tmdb.org/t/p/w500${bannerConfig.poster_path}`}
-                        alt={bannerConfig.original_title}
-                    />
-                </Link>
-            </div>
-        </Content>
-        <Footer />
-    </Container>
+const HomePage = () => ( <Container></Container>
+    // <Container>
+    //     <Header />
+    //     <Content>
+    //         <div css={mainCls} justifyContent="space-between">
+    //             <div className="content">
+    //                 <div className="title">{bannerConfig.original_title}</div>
+    //                 <div className="subtitle">
+    //                     {`2016 | ${bannerConfig.genres_data.toString().replace(/,/g, ', ')}`}
+    //                 </div>
+    //                 <div className="overview">{bannerConfig.overview}</div>
+    //                 <div className="price">{`$${bannerConfig.price}`}</div>
+    //                 <div className="action">
+    //                     <Button>Purchase</Button>
+    //                     <Button href="https://www.youtube.com/watch?v=5mkm22yO-bs&t=1s">Watch Trailer</Button>
+    //                 </div>
+    //             </div>
+    //             <Link href={`/product/${bannerConfig.id}`}>
+    //                 <img
+    //                     src={`https://image.tmdb.org/t/p/w500${bannerConfig.poster_path}`}
+    //                     alt={bannerConfig.original_title}
+    //                 />
+    //             </Link>
+    //         </div>
+    //     </Content>
+    //     <Footer />
+    // </Container>
 );
 
 export default HomePage;
