@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 const Index = () => (
     <div>
         <Layout>
-            <div>Welcome to Sparkie Audio</div>
+            <h3>Welcome to Sparkie Audio</h3>
         </Layout>
     </div>
 );
