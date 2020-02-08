@@ -1,0 +1,26 @@
+{
+  "name": "we.sparkie.reactjs",
+  "version": "1.0.0",
+  "description": "next js react app client for Sparkie Audio",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jolySoft/We.Sparkie.Reactjs.git"
+  },
+  "author": "Jolyon Wharton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jolySoft/We.Sparkie.Reactjs/issues"
+  },
+  "homepage": "https://github.com/jolySoft/We.Sparkie.Reactjs#readme",
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
