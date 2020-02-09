@@ -6,8 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from "@material-ui/core/ListItemText";
+import Drawer from '@material-ui/core/Drawer';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,19 +21,32 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
+    list: {
+        width: 250,
+    },
+    fullList: {
+        width: 'auto',
+    },
 }));
+
+function ListItemLink(props) {
+    return <ListItem button component="a" {...props} />;
+}
 
 export default function NavBar() {
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [state, setState] = React.useState({
+        open: false,
+    });
 
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const toggleDrawer = (open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({ ...state, ["open"]: open });
     };
 
     return (
@@ -39,17 +54,22 @@ export default function NavBar() {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon onClick={handleClick}/>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={handleClose}><Link href="/"><a>Home</a></Link></MenuItem>
-                            <MenuItem onClick={handleClose}><Link href="/tracks/"><a>Tracks</a></Link></MenuItem>
-                        </Menu>
+                        <MenuIcon onClick={toggleDrawer(true)}/>
                     </IconButton>
+                    <Drawer open={state.open} onClose={toggleDrawer(false)}>
+                        <List>
+                            <ListItem button key="Home">
+                                <ListItemLink href="/">
+                                    <ListItemText primary="Home" />
+                                </ListItemLink>
+                            </ListItem>
+                            <ListItem button key="tracks">
+                                <ListItemLink href="/tracks">
+                                    <ListItemText primary="Tracks" />
+                                </ListItemLink>
+                            </ListItem>
+                        </List>
+                    </Drawer>
                     <Typography variant="h6" className={classes.title}>
                         Sparkie Audio
                     </Typography>
