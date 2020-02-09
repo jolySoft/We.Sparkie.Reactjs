@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,17 +24,31 @@ const useStyles = makeStyles(theme => ({
 export default function NavBar() {
     const classes = useStyles();
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon>
-                            <ul>
-                                <li><Link href="/"><a>Home</a></Link></li>
-                                <li><Link href="/tracks/"><a>Tracks</a></Link></li>
-                            </ul>
-                        </MenuIcon>
+                        <MenuIcon onClick={handleClick}/>
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleClose}><Link href="/"><a>Home</a></Link></MenuItem>
+                            <MenuItem onClick={handleClose}><Link href="/tracks/"><a>Tracks</a></Link></MenuItem>
+                        </Menu>
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Sparkie Audio
@@ -43,12 +59,3 @@ export default function NavBar() {
         </div>
     );
 };
-
-
-
- /*   <div>
-
-    </div>*/
-
-
-// export default NavBar;
